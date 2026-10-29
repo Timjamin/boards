@@ -1,0 +1,100 @@
+body {
+    max-width: 700px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    font-family: Comic Sans MS, Garamond, serif;
+    background: #291F21;
+    color: #F8E5EE
+}
+
+/*
+Source - https://stackoverflow.com/a/38133000
+Posted by Woodrow Barlow
+Retrieved 2026-10-27, License - CC BY-SA 3.0
+*/
+
+@keyframes wiggle {
+   0% { transform: rotate(0deg); }
+   25% { transform: rotate(5deg); }
+   75% { transform: rotate(-5deg); }
+  100% { transform: rotate(0deg); }
+}
+
+h1.wiggle {
+  display: inline-block;
+  animation: wiggle 2.5s infinite;
+}
+
+h1.wiggle:hover {
+  animation: none;
+}
+
+form, article {
+    margin: 1rem 0;
+    padding: 1rem;
+    border: 1px solid #ccc;
+}
+
+article {
+    background: #37412B;
+}
+
+label, textarea, input, button {
+    display: block;
+    margin: 0.5rem 0;
+    
+}
+
+article header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.post-title {
+    color: #b00;
+}
+
+.post-name {
+    color: #117743;
+    font-weight: bold;
+}
+
+article time {
+    color: #555;
+}
+
+textarea {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 5rem;
+}
+
+article img {
+    float: left;
+    max-width: 50%;
+    height: auto;
+    max-height: 300px;
+    margin: 0 1rem 0.5rem 0;
+}
+
+.post-text {
+    white-space: pre-wrap;
+}
+
+.clear {
+    clear: both;
+}
+
+/* There is probably a better way to have the name and title fields split like this */
+
+split {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+split.div {
+    width: 50%;
+}

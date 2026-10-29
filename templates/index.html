@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form action="{{ url_for('post') }}" method="post" enctype="multipart/form-data">
+        <split>
+            <div>
+                <label for="username">name (anon by default)</label>
+                <input id="username" name="username" maxlength="30">
+            </div>
+            <div>
+                <label for="title">title</label>
+                <input id="title" name="title" maxlength="100" required>
+            </div>
+        </split>
+        <label for="text">whadaya thinkin</label>
+        <textarea id="text" name="text" maxlength="1000" required></textarea>
+        <label for="image">Image (PNG, JPEG, GIF, WebP, JXL, or AVIF; max 5 MB)</label>
+        <input id="image" type="file" name="image" accept="image/png,image/jpeg,image/gif,image/webp,image/jxl,image/avif" required>
+        <button type="submit">spew your thoughts to the void</button>
+    </form>
+
+    {% if error %}
+        <p role="alert">{{ error }}</p>
+    {% endif %}
+
+    {% for post in posts %}
+        <article>
+            <header>
+                <strong class="post-title">{{ post.title }}</strong>
+                <span class="post-name">{{ post.username }}</span>
+                <time>{{ post.timestamp }}</time>
+                <span>No.{{ post.id }}</span>
+            </header>
+            <img src="{{ url_for('show_image', post_id=post.id) }}" alt="Image attached to post">
+            <p class="post-text">{{ post.text }}</p>
+            <div class="clear"></div>
+        </article>
+    {% else %}
+        <p>nothing here yet... and thats on you to change.</p>
+        <style> .ben { max-width: 300px; } </style>
+        <img class="ben" src="{{url_for('static', filename='images/responsibility.jpg')}}" alt="with great power, comes great responsibility">
+    {% endfor %}
+{% endblock content %}
