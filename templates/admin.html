@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>super secret admin page for admins only</h1>
+    <split>
+        {% for post in posts %}
+            <form method="post" action="{{ url_for('delete_post', post_id=post.id) }}">
+                <button type="submit">delete {{post.id}}</button>
+            </form>
+        {% else %}
+            <p>nothing here yet... and thats on you to change.</p>
+            <style> .ben { max-width: 300px; } </style>
+            <img class="ben" src="{{url_for('static', filename='images/responsibility.jpg')}}" alt="with great power, comes great responsibility">
+        {% endfor %}
+    </split>
+    
+{% endblock content %}

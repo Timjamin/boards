@@ -118,6 +118,15 @@ def show_image(post_id):
         abort(404)
     return app.response_class(post.image, mimetype=post.type)
 
+@app.route("/admin")
+def admin():
+    return render_template("admin.html", posts=Post.query.all())
+
+@app.route("/delete/<int:post_id>", methods=["POST"])
+def delete_post(post_id):
+    db.session.delete(db.session.get(Post, post_id))
+    db.session.commit()
+    return render_template("admin.html", posts=Post.query.all())
 
 if __name__ == "__main__":
     app.run()
